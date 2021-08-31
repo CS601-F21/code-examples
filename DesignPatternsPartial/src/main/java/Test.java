@@ -9,9 +9,9 @@ public class Test {
     public static void main(String[] args) {
 
 		Graph g = (new GraphBuilder())
-		.setFileSuffix("edges")
-		.setLocation(Paths.get("data/"))
-		.build();
+				.setFileSuffix("edges")
+				.setLocation(Paths.get("data/"))
+				.build();
 
 		g.bfs(82, 4);
 
