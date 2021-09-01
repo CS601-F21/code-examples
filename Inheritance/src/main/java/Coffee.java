@@ -3,7 +3,7 @@ public class Coffee extends Beverage {
     protected boolean isDecaf;
 
     public Coffee(int ounces, boolean isDecaf) {
-        super(ounces);
+//        super(ounces);
         this.isDecaf = isDecaf;
     }
 
