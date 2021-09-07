@@ -24,7 +24,9 @@ public class GraphBuilder {
 	public GraphBuilder() {
 		this.graph = new BasicGraph();
 	}
-	
+
+	// three data members
+
 	/**
 	 * Set the location of the directory of the source files 
 	 * that will be used to build this graph.

@@ -42,4 +42,11 @@ public interface Graph {
 	 */
 	public void dfs(int startNode);
 
+	/**
+	 * Use the Visitor pattern to allow a vistor to
+	 * visit every node of this graph.
+	 * @param v
+	 */
+	public void accept(Visitor v);
+
 }

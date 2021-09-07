@@ -1,5 +1,7 @@
 package graph;
 
+import graph.visitor.Visitor;
+
 import java.util.ArrayList;
 
 /**
@@ -49,6 +51,13 @@ public class Node {
 	public ArrayList<Integer> getEdges() {
 		return edges;
 	}
-	
-	
+
+	/**
+	 * Accept a new visitor for this node.
+	 * @param v
+	 */
+	public void accept(Visitor v) {
+		v.visit(this);
+	}
+
 }

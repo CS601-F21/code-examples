@@ -6,9 +6,22 @@ package example;
  */
 public class DBManager {
 
+    // JDBC connection
+
+    private static DBManager INSTANCE;
+
     private DBManager() {
         // do some stuff
+        // set up my JDBC connection...
 
     }
+
+    public static DBManager getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new DBManager();
+        }
+        return INSTANCE;
+    }
+
 
 }

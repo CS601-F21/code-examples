@@ -1,6 +1,11 @@
+import facebook.FacebookGraph;
+import facebook.UnfriendEvent;
+import facebook.UnfriendObserver;
 import graph.BasicGraph;
 import graph.Graph;
 import graph.GraphBuilder;
+import graph.visitor.Visitor;
+import graph.visitor.impl.EvenNodeVisitor;
 
 import java.nio.file.Paths;
 
@@ -8,39 +13,21 @@ public class Test {
 
     public static void main(String[] args) {
 
+    	// use the builder to generate a generic graph
 		Graph g = (new GraphBuilder())
 				.setFileSuffix("edges")
 				.setLocation(Paths.get("data/"))
 				.build();
 
-		g.bfs(82, 4);
+		// decorate the existing graph as a FacebookGraph
+		FacebookGraph fbgraph = new FacebookGraph(g);
 
+		// demonstrate use of the visitor
+		Visitor evenVisitor = new EvenNodeVisitor();
+		fbgraph.accept(evenVisitor);
 
-
-//
-//        Graph g = new BasicGraph();
-//        g.addEdge(1, 2);
-//        g.addEdge(1, 3);
-//
-//        g.addEdge(2, 4);
-//        g.addEdge(2, 5);
-//
-//        g.addEdge(3, 1);
-//
-//        g.addEdge(4, 2);
-//        g.addEdge(4, 6);
-//
-//        g.addEdge(5, 2);
-//        g.addEdge(5, 6);
-//
-//        g.addEdge(6, 4);
-//        g.addEdge(6, 5);
-//
-//        g.bfs(1, 3);
-//
-//        g.removeEdge(2, 5);
-//
-//        //g.bfs(1);
+		UnfriendObserver unfriendObserver = new UnfriendObserver();
+		fbgraph.addObserver(unfriendObserver);
 
     }
 }

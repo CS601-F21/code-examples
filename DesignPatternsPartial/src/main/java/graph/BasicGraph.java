@@ -1,5 +1,7 @@
 package graph;
 
+import graph.visitor.Visitor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -143,7 +145,18 @@ public class BasicGraph implements Graph {
 			}
 		}
 	}
-	
+
+	/**
+	 * Use the Visitor pattern to allow a vistor to
+	 * visit every node of this graph.
+	 * @param v
+	 */
+	public void accept(Visitor v) {
+		for(Node node : nodes.values()) {
+			node.accept(v);
+		}
+	}
+
 	/**
 	 * Inner class to maintain a tuple of a node and its level 
 	 * for use during traversal.
