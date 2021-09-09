@@ -8,9 +8,9 @@ public class ThreadTest {
         InfinitePrinter ip2 = new InfinitePrinter("t2");
 
         Thread t1 = new Thread(ip1);
-        Thread t2 = new Thread(ip2);
-
         t1.start();
+
+        Thread t2 = new Thread(ip2);
         t2.start();
 
     }
