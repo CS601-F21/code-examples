@@ -13,7 +13,7 @@ public class SummationExample {
 
 
         /* TBD: list of threads */
-		ArrayList<Thread> threadList = new ArrayList<>();
+//		ArrayList<Thread> threadList = new ArrayList<>();
 
         /* TBD: executor service */
 //        ExecutorService threadPool = Executors.newFixedThreadPool(30);
@@ -26,9 +26,9 @@ public class SummationExample {
 //			Summation.calcSummation(i);
 
             /* TBD: one thread per task */
-			Thread t = new Thread(new Summation(i));
-			threadList.add(t);
-			t.start();
+//			Thread t = new Thread(new Summation(i));
+//			threadList.add(t);
+//			t.start();
 
 
             /* TBD: thread pool */
@@ -37,13 +37,13 @@ public class SummationExample {
         }
 
         /* TBD: join on all threads */
-		for(Thread t: threadList) {
-			try {
-				t.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+//		for(Thread t: threadList) {
+//			try {
+//				t.join();
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 
         /* TBD: shutdown executor service */
