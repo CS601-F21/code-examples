@@ -16,23 +16,23 @@ public class SummationExample {
 //		ArrayList<Thread> threadList = new ArrayList<>();
 
         /* TBD: executor service */
-//        ExecutorService threadPool = Executors.newFixedThreadPool(30);
+        ExecutorService threadPool = Executors.newFixedThreadPool(30);
 
 
         long start = System.currentTimeMillis(); //retrieve current time when starting calculations
 
         for(long i = 1; i < MAX; i++) {
             /* TBD: sequential execution */
-//			Summation.calcSummation(i);
+//			Summation.calcSummation(i); // sequential took ~39 seconds
 
             /* TBD: one thread per task */
-//			Thread t = new Thread(new Summation(i));
+//			Thread t = new Thread(new Summation(i)); // one thread per task took ~28 seconds
 //			threadList.add(t);
 //			t.start();
 
 
             /* TBD: thread pool */
-//            threadPool.execute(new Summation(i));
+            threadPool.execute(new Summation(i)); // thread pool solution ~8 seconds
 
         }
 
@@ -47,12 +47,13 @@ public class SummationExample {
 
 
         /* TBD: shutdown executor service */
-//        threadPool.shutdown();
-//        try {
-//            threadPool.awaitTermination(2, TimeUnit.MINUTES);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        threadPool.shutdown();
+        try {
+            threadPool.awaitTermination(2, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         long end = System.currentTimeMillis(); //retrieve current time when finishing calculations
         System.out.println("time: " + (end-start));
