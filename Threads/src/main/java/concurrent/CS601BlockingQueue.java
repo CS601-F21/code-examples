@@ -27,7 +27,7 @@ public class CS601BlockingQueue<T> {
     public synchronized void put(T item) {
         while(size == items.length) {
             try {
-                wait();
+                this.wait();
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

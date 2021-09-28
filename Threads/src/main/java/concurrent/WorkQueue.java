@@ -25,10 +25,18 @@ public class WorkQueue
     }
 
     public void execute(Runnable r) {
-        synchronized(queue) {
-            queue.addLast(r);
-            queue.notify();
+        if(running) {
+            synchronized (queue) {
+                queue.addLast(r);
+                queue.notify();
+            }
+        } else {
+            // throw an exception or print error
         }
+    }
+
+    public void shutdown() {
+        running = false;
     }
 
     private class PoolWorker extends Thread {
