@@ -68,8 +68,6 @@ public class EmailParser {
             return;
         }
 
-        assert m.groupCount() == 3 : "Groups: " + m.groupCount();
-
         valid = true;
 
         this.email  = m.group(0);
@@ -135,5 +133,10 @@ public class EmailParser {
     public String debug() {
         return String.format("Email: %s, Local: %s, Domain: %s, TLD: %s",
                 getEmail(), getLocal(), getDomain(), getTLD());
+    }
+
+    public static void main(String[] args) {
+        EmailParser parser = new EmailParser("srollins@cs.usfca.edu@test.com");
+
     }
 }
