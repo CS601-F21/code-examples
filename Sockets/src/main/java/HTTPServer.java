@@ -30,7 +30,8 @@ public class HTTPServer {
             try (
                     Socket sock = server.accept();
                     BufferedReader instream = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-                    OutputStream outputStream = sock.getOutputStream()
+                    OutputStream outputStream = sock.getOutputStream();
+                    PrintWriter writer = new PrintWriter(outputStream)
             ) {
 
                 String headers = "";
@@ -44,46 +45,46 @@ public class HTTPServer {
                 System.out.println("Request Line: " + requestLine);
                 System.out.println("Headers: \n" + headers);
 
-                //parse request line
-                String[] requestLineParts = requestLine.split("\\s+");
-                //TODO: make sure requestLineParts has three components
-                //TODO: verify we support the protocol version specified
-                //TODO: if method is not GET - send 405 response
-
-                String path = requestLineParts[1];
-
-                //open file
-                try (
-                        InputStream inputStream = new FileInputStream(BASE_PATH + path);
-                ) {
-
-                    int byteRead;
-
-                    outputStream.write(HTTPConstants.OK_HEADER.getBytes());
-
-                    while ((byteRead = inputStream.read()) != -1) {
-                        outputStream.write(byteRead);
-                    }
-
-                } catch (FileNotFoundException fnf) {
-                    //TODO: return 404 not found
-
-                } catch (IOException ioe) {
-                    //TODO: internal server error
-                }
-
-//				String responseHeader = "HTTP/1.0 200 OK\n" +
-//						"\r\n";
+//                //parse request line
+//                String[] requestLineParts = requestLine.split("\\s+");
+//                //TODO: make sure requestLineParts has three components
+//                //TODO: verify we support the protocol version specified
+//                //TODO: if method is not GET - send 405 response
 //
+//                String path = requestLineParts[1];
 //
-//				String page = "<html> " +
-//						"<head><title>TEST</title></head>" +
-//						"<body>This is a short test page.</body>" +
-//						"</html>";
+//                //open file
+//                try (
+//                        InputStream inputStream = new FileInputStream(BASE_PATH + path);
+//                ) {
 //
-//				writer.write(responseHeader);
-//				writer.write(page);
-//				writer.flush();
+//                    int byteRead;
+//
+//                    outputStream.write(HTTPConstants.OK_HEADER.getBytes());
+//
+//                    while ((byteRead = inputStream.read()) != -1) {
+//                        outputStream.write(byteRead);
+//                    }
+//
+//                } catch (FileNotFoundException fnf) {
+//                    //TODO: return 404 not found
+//
+//                } catch (IOException ioe) {
+//                    //TODO: internal server error
+//                }
+
+				String responseHeader = "HTTP/1.0 200 OK\n" +
+						"\r\n";
+
+
+				String page = "<html> " +
+						"<head><title>TEST</title></head>" +
+						"<body>This is a short test page.</body>" +
+						"</html>";
+
+				writer.write(responseHeader);
+				writer.write(page);
+				writer.flush();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }

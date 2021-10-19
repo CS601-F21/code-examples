@@ -11,7 +11,6 @@ public class HTTPSClient {
 
     final static int PORT = 80;
 
-    //propagate exception to simplify demonstration code
     public static void main(String[] args) {
         try {
             processRequest();

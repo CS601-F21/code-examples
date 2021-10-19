@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,6 +18,8 @@ public class SimpleServer {
         CS601Logger.setup();
         Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+
+        ArrayList<Socket> clients = new ArrayList<>();
         ServerSocket server = null;
         try {
             server = new ServerSocket(1024);
@@ -23,7 +27,6 @@ public class SimpleServer {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
 
         while(running) {
             //try with resources ensures socket will be closed
@@ -56,6 +59,13 @@ public class SimpleServer {
                 ioe.printStackTrace();
                 logger.log(Level.SEVERE, ioe.getMessage());
             }
+        }
+
+        //close server socket
+        try {
+            server.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

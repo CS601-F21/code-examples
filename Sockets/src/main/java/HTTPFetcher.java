@@ -3,7 +3,7 @@ import java.net.Socket;
 
 public class HTTPFetcher {
 
-    public static int PORT = 80;
+    public final static int PORT = 80;
 
     public static String download(String host, String path) {
 
@@ -19,6 +19,7 @@ public class HTTPFetcher {
 
             //send request
             String request = getRequest(host, path);
+            System.out.println(request);
             out.write(request.getBytes());
             out.flush();
 
@@ -46,7 +47,10 @@ public class HTTPFetcher {
     }
 
     public static void main(String[] args) {
-        System.out.println(download("www.google.com", "/"));
+        // http://www.cs.usfca.edu/~srollins/test.html
+        // http://www.google.com
+//        String response = download("www.cs.usfca.edu", "/~srollins/test.html");
+//        System.out.println(response);
+        System.out.println(download("cs601-f21.github.io", "/"));
     }
-
 }

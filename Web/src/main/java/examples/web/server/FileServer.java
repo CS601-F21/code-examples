@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -76,15 +77,17 @@ public class FileServer {
                     String version = requestLineParts[2];
                     LOGGER.debug("Http Version: " + version);
 
+                    Path filePath = Paths.get("." + path);
+
                     // only allow GET requests
                     if(!method.equals(HttpConstants.GET)) {
                         ServerUtils.send405(writer);
 
                     // only serve files from a single path
-                    } else if(path.startsWith(HttpConstants.FILE_PATH)) {
+                    } else if(path.startsWith(HttpConstants.FILE_PATH) && Files.isRegularFile(filePath)) {
 
                         // assume that the path is releative to the current directory
-                        try (BufferedReader file = Files.newBufferedReader(Paths.get("."  + path)))
+                        try (BufferedReader file = Files.newBufferedReader(filePath))
                         {
                             // file was found...send 200 OK status line
                             ServerUtils.send200(writer);
