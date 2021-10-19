@@ -51,11 +51,13 @@ public class HTTPFetcher {
 
         try {
             HttpRequest.Builder builder = HttpRequest.newBuilder(new URI(url));
+
             if(headers != null) {
                 for (String key : headers.keySet()) {
                     builder = builder.setHeader(key, headers.get(key));
                 }
             }
+
             HttpRequest request = builder.POST((HttpRequest.BodyPublishers.ofString(body)))
                     .build();
 
@@ -72,7 +74,7 @@ public class HTTPFetcher {
 
     public static void main(String[] args) {
 
-        String url = "http://localhost:1024/echo";
+        String url = "https://www.cs.usfca.edu/~srollins/test.html";
         String response = doGet(url);
 //        String response = doPost(url, null, "msg=here is a message");
         System.out.println(response);

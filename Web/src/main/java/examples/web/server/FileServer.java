@@ -71,10 +71,11 @@ public class FileServer {
                     // TODO: validate request line
                     // TODO: confirm it contains three substrings!
                     String method = requestLineParts[0];
-                    LOGGER.debug("Http Method: " + method);
                     String path = requestLineParts[1];
-                    LOGGER.debug("Path: " + path);
                     String version = requestLineParts[2];
+
+                    LOGGER.debug("Http Method: " + method);
+                    LOGGER.debug("Path: " + path);
                     LOGGER.debug("Http Version: " + version);
 
                     Path filePath = Paths.get("." + path);
