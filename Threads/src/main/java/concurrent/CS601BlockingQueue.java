@@ -1,5 +1,7 @@
 package concurrent;
 
+import java.lang.reflect.Array;
+
 public class CS601BlockingQueue<T> {
 
     private T[] items;
@@ -12,9 +14,6 @@ public class CS601BlockingQueue<T> {
      * @param size
      */
     public CS601BlockingQueue(int size) {
-//        https://www.baeldung.com/java-generic-array
-//        this.items = (T[]) Array.newInstance(T.class, size);
-
         this.items = (T[]) new Object[size];
         this.start = 0;
         this.end = -1;
@@ -28,7 +27,7 @@ public class CS601BlockingQueue<T> {
     public synchronized void put(T item) {
         while(size == items.length) {
             try {
-                wait();
+                this.wait();
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

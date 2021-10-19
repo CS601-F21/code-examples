@@ -8,10 +8,12 @@ public class Adder {
 
         Adder a = new Adder();
 
+
         Thread t1 = new Thread() {
             public void run() {
                 for(int i = 0; i < 30000; i++) {
                     a.value++;
+                    // a.value = a.value + 1;
                 }
                 System.out.println("thread 1 complete");
             }

@@ -4,6 +4,7 @@ public class SharedDataExample {
 
     public static void main(String[] args) {
         SharedDataStructure sds = new SharedDataStructure();
+        SharedDataStructure sds2 = new SharedDataStructure();
 
         Thread t1 = new Thread(() -> {
             for(int i = 0; i < 100; i++) {
@@ -12,7 +13,7 @@ public class SharedDataExample {
         });
 
         Thread t2 = new Thread(() -> {
-            for(int i = 0; i < 100; i++) {
+            for(int i = 100; i < 200; i++) {
                 sds.addValue(i, "Value: " + i);
             }
         });
