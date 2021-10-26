@@ -46,6 +46,7 @@ public class FileServer {
      * and paste this code as-is into your solution.
      */
     public void startup() {
+
         // start
         try (ServerSocket serve = new ServerSocket(port)) {
             LOGGER.info("File Server listening on port " + port);
@@ -78,6 +79,8 @@ public class FileServer {
                     LOGGER.debug("Path: " + path);
                     LOGGER.debug("Http Version: " + version);
 
+                    //http://localhost:1024/files/test.html
+                    // path: ./files/test.html
                     Path filePath = Paths.get("." + path);
 
                     // only allow GET requests
@@ -85,13 +88,15 @@ public class FileServer {
                         ServerUtils.send405(writer);
 
                     // only serve files from a single path
-                    } else if(path.startsWith(HttpConstants.FILE_PATH) && Files.isRegularFile(filePath)) {
+                    } else if(path.startsWith(HttpConstants.FILE_PATH) &&
+                            Files.isRegularFile(filePath)) {
 
                         // assume that the path is releative to the current directory
                         try (BufferedReader file = Files.newBufferedReader(filePath))
                         {
                             // file was found...send 200 OK status line
                             ServerUtils.send200(writer);
+
 
                             // write file contents
                             String line;
