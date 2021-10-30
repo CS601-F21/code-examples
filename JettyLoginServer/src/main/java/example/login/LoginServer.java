@@ -18,6 +18,15 @@ import java.util.*;
 
 /**
  * A server to use Jetty to implement login with Slack functionality.
+ *
+ * To run this example you'll need a publicly-accessible redirect URL.
+ * I used ngrok for this purpose: https://ngrok.com/
+ * For the free version, each time you restart ngrok you'll get a new URL.
+ * You need to configure that URL for your Slack app and make sure to
+ * specify it in your config file.
+ * For sessions to work correctly, you also must use that URL when
+ * testing your program locally. DO NOT USE LOCALHOST!
+ *
  */
 public class LoginServer {
 
