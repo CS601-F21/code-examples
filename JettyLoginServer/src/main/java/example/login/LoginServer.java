@@ -13,6 +13,7 @@ import utilities.ClientInfo;
 import utilities.Config;
 
 import javax.xml.crypto.Data;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
@@ -33,7 +34,20 @@ public class LoginServer {
     public static final int PORT = 8080;
     private static final String configFilename = "config.json";
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        try {
+            startup();
+        } catch(Exception e) {
+            // catch generic Exception as that is what is thrown by server start method
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * A helper method to start the server.
+     * @throws Exception -- generic Exception thrown by server start method
+     */
+    public static void startup() throws Exception {
 
         // read the client id and secret from a config file
         Gson gson = new Gson();

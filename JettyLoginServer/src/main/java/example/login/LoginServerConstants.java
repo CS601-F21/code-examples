@@ -8,7 +8,7 @@ public class LoginServerConstants {
     public static final String PAGE_HEADER = "<!DOCTYPE html>\n" +
             "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
             "<head>\n" +
-            "  <title>Echo</title>\n" +
+            "  <title>Log in with Slack</title>\n" +
             "</head>\n" +
             "<body>\n" +
             "\n";
