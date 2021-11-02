@@ -30,7 +30,6 @@ public class LandingServlet extends HttpServlet {
             resp.getWriter().println(LoginServerConstants.PAGE_HEADER);
             resp.getWriter().println("<h1>You have already been authenticated</h1>");
             resp.getWriter().println(LoginServerConstants.PAGE_FOOTER);
-            System.out.println("Already authed");
             return;
         }
 
@@ -62,7 +61,6 @@ public class LandingServlet extends HttpServlet {
                 nonce,
                 config.getRedirect_url());
 
-        System.out.println(url);
         resp.setStatus(HttpStatus.OK_200);
         PrintWriter writer = resp.getWriter();
         writer.println(LoginServerConstants.PAGE_HEADER);
