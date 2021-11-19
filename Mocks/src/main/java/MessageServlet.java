@@ -1,3 +1,5 @@
+package servlets;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,5 +38,9 @@ public class MessageServlet extends HttpServlet {
             ((List<String>)req.getServletContext().getAttribute("data")).add(message);
             resp.setStatus(HttpStatus.OK_200);
         }
+    }
+
+    private void testMethod() {
+
     }
 }

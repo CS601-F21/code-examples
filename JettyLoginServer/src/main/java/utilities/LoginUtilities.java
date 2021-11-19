@@ -6,6 +6,9 @@ import example.login.LoginServerConstants;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.StringReader;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
 
@@ -116,6 +119,7 @@ public class LoginUtilities {
         }
 
         // retrieve and decode id_token
+//        String idToken = URLDecoder.decode((String)map.get("id_token"), StandardCharsets.UTF_8);
         String idToken = (String)map.get("id_token");
         Map<String, Object> payloadMap = decodeIdTokenPayload(idToken);
 
@@ -146,7 +150,7 @@ public class LoginUtilities {
         // Decoding process taken from:
         // https://www.baeldung.com/java-jwt-token-decode
         String[] chunks = idToken.split("\\.");
-        Base64.Decoder decoder = Base64.getDecoder();
+        Base64.Decoder decoder = Base64.getUrlDecoder();
 
         String header = new String(decoder.decode(chunks[0]));
         String payload = new String(decoder.decode(chunks[1]));
@@ -154,9 +158,5 @@ public class LoginUtilities {
         // convert the id_token payload to a map
         Map<String, Object> payloadMap = gson.fromJson(new StringReader(payload), Map.class);
         return payloadMap;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(generateSlackAuthorizeURL("abc", "123", "def", "url"));
     }
 }
